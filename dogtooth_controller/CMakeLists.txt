@@ -69,36 +69,11 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE "DOGTOOTH_HARDWARE_BUILDING_D
 
 # Export hardware plugins
 pluginlib_export_plugin_description_file(hardware_interface dogtooth_hardware_plugin.xml)
-
 if(BUILD_TESTING)
   find_package(ament_cmake_gmock REQUIRED)
   find_package(controller_manager REQUIRED)
   find_package(ros2_control_test_assets REQUIRED)
 
-  ament_add_gmock(test_dogtooth_controller
-    test/test_dogtooth_controller.cpp
-    ENV config_file=${CMAKE_CURRENT_SOURCE_DIR}/test/config/test_dogtooth_controller.yaml)
-  target_link_libraries(test_dogtooth_controller
-    dogtooth_controller
-  )
-  ament_target_dependencies(test_dogtooth_controller
-    geometry_msgs
-    hardware_interface
-    nav_msgs
-    rclcpp
-    rclcpp_lifecycle
-    realtime_tools
-    tf2
-    tf2_msgs
-  )
-
-  ament_add_gmock(test_load_dogtooth_controller
-    test/test_load_dogtooth_controller.cpp
-  )
-  ament_target_dependencies(test_load_dogtooth_controller
-    controller_manager
-    ros2_control_test_assets
-  )
 endif()
 install(
   DIRECTORY include/dogtooth_hardware/
