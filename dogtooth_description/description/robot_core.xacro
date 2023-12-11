@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
- <xacro:macro name="dogbot" params="prefix">
+<xacro:macro name="dogbot" params="prefix">
     <xacro:property name="chassis_xyz" value="-0.016 -0.01 0.1025"/>
 
     <!-- BASE LINK -->

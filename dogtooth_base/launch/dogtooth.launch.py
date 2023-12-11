@@ -50,7 +50,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("dogtooth_base"), "description", "dogtooth.urdf.xacro"]
+                [FindPackageShare("dogtooth_description"), "description", "dogtooth_hardware.urdf.xacro"]
             ),
             " ",
             "use_mock_hardware:=",
@@ -61,9 +61,9 @@ def generate_launch_description():
 
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare("dogtooth_base"),
+            FindPackageShare("dogtooth_control"),
             "config",
-            "controllers.yaml",
+            "hardware_controllers.yaml",
         ]
     )
     # rviz_config_file = PathJoinSubstitution(

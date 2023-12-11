@@ -78,7 +78,7 @@ endif()
 # endif()
 
 install(
-  DIRECTORY config launch description
+  DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}
 )
 
