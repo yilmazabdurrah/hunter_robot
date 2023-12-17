@@ -61,7 +61,7 @@ def generate_launch_description():
 
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare("dogtooth_control"),
+            FindPackageShare("dogtooth_base"),
             "config",
             "hardware_controllers.yaml",
         ]

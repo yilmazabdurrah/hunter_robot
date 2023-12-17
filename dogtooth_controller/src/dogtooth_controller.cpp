@@ -307,10 +307,10 @@ controller_interface::return_type DogtoothController::update(
   // float x = x_value;
   // float z = z_value;
   message["velocity"]["x"] = linear_command ;
-  if ((linear_command >= 0.0 && linear_command < 0.05)  || (linear_command <= 0.0 && linear_command > -0.05)){
-    message["angulary"]["z"] = 0.0; }
-  else {
-    message["angulary"]["z"] = angular_command;}
+  // if ((linear_command >= 0.0 && linear_command < 0.05)  || (linear_command <= 0.0 && linear_command > -0.05)){
+  //   message["angulary"]["z"] = 0.0; }
+  // else {
+    message["angulary"]["z"] = angular_command;//}
     // std::cout<< "============before_update_time" << std::endl;
 
   update_time();

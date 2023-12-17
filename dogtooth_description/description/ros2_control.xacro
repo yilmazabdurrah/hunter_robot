@@ -41,7 +41,7 @@
 
     <gazebo>
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
-            <parameters>$(find dogtooth_control)/config/controllers.yaml</parameters>
+            <parameters>$(find dogtooth_gazebo)/config/controllers.yaml</parameters>
         </plugin>
     </gazebo>
 
