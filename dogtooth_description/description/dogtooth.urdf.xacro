@@ -3,7 +3,8 @@
     <xacro:arg name="prefix" default="" />
     <xacro:arg name="use_ros2_control" default="true"/>
 
-    <xacro:include filename="robot_core.xacro"/>
+    <!-- <xacro:include filename="robot_core.xacro"/> -->
+    <xacro:include filename="$(find dogtooth_description)/description/dogtooth_core.urdf.xacro"/>
     <xacro:dogbot prefix="$(arg prefix)" />
     <xacro:if value="$(arg use_ros2_control)">
         <xacro:include filename="$(find dogtooth_description)/description/ros2_control.xacro" />
