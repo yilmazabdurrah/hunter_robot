@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 <xacro:include filename="$(find dogtooth_description)/description/wheel.urdf.xacro"/>
-<xacro:macro name="dogbot" params="prefix:=''">
+<xacro:macro name="dogbot" params="prefix:='' is_sim:=true">
      <!-- Base Size -->
     <xacro:property name="base_x_size" value="0.98740000" />
     <xacro:property name="base_y_size" value="0.57090000" />
@@ -71,17 +71,10 @@
     </joint>
 
     
-    <xacro:dogtooth_wheel wheel_prefix="${prefix}front_left">
-      <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:dogtooth_wheel>
-    <xacro:dogtooth_wheel wheel_prefix="${prefix}front_right">
-      <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:dogtooth_wheel>
-    <xacro:dogtooth_wheel wheel_prefix="${prefix}back_left">
-      <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:dogtooth_wheel>
-    <xacro:dogtooth_wheel wheel_prefix="${prefix}back_right">
-      <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:dogtooth_wheel>
+
+    <xacro:dogtooth_wheel wheel_prefix="${prefix}front_left" x="${wheelbase/2}" y="${track/2}" z="${wheel_vertical_offset}" is_sim="${is_sim}"/>
+    <xacro:dogtooth_wheel wheel_prefix="${prefix}front_right" x="${wheelbase/2}" y="${-track/2}" z="${wheel_vertical_offset}" is_sim="${is_sim}"/>
+    <xacro:dogtooth_wheel wheel_prefix="${prefix}back_left" x="${-wheelbase/2}" y="${track/2}" z="${wheel_vertical_offset}" is_sim="${is_sim}"/>
+    <xacro:dogtooth_wheel wheel_prefix="${prefix}back_right" x="${-wheelbase/2}" y="${-track/2}" z="${wheel_vertical_offset}" is_sim="${is_sim}"/>
 </xacro:macro>
 </robot>
