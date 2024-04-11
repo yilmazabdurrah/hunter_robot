@@ -81,6 +81,6 @@ public:
 // 
 };
 
-}  // namespace dogtooth_hardware
+}  // namespace hunter_hardware
 
 #endif  // HUNTER_HARDWARE__DIFFBOT_SYSTEM_HPP_

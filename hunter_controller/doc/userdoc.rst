@@ -1,8 +1,8 @@
-:github_url: https://github.com/ros-controls/ros2_controllers/blob/{REPOS_FILE_BRANCH}/dogtooth_controller/doc/userdoc.rst
+:github_url: https://github.com/ros-controls/ros2_controllers/blob/{REPOS_FILE_BRANCH}/hunter_controller/doc/userdoc.rst
 
-.. _dogtooth_controller_userdoc:
+.. _hunter_controller_userdoc:
 
-dogtooth_controller
+hunter_controller
 =====================
 
 Controller for mobile robots with differential drive.
@@ -67,7 +67,7 @@ Publishers
 Parameters
 ,,,,,,,,,,,,
 
-Check `parameter definition file for details <https://github.com/ros-controls/ros2_controllers/blob/{REPOS_FILE_BRANCH}/dogtooth_controller/src/dogtooth_controller_parameter.yaml>`_.
+Check `parameter definition file for details <https://github.com/ros-controls/ros2_controllers/blob/{REPOS_FILE_BRANCH}/hunter_controller/src/hunter_controller_parameter.yaml>`_.
 
 Note that the documentation on parameters for joint limits can be found in `their header file <https://github.com/ros-controls/ros2_control/blob/{REPOS_FILE_BRANCH}/joint_limits/include/joint_limits/joint_limits_rosparam.hpp#L56-L75>`_.
 Those parameters are:

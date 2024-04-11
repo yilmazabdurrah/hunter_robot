@@ -31,6 +31,7 @@
 #include "tf2/LinearMath/Quaternion.h"
 #include <sys/socket.h>
 #include <arpa/inet.h>
+// #include "std_msgs/msg/string.hpp"
 
 #include <netinet/in.h> 
 using json = nlohmann::json;
@@ -84,6 +85,7 @@ controller_interface::CallbackReturn HunterController::on_init()
   // int sockfd = socket(AF_INET , SOCK_DGRAM  ,0 );
   // bool connected_flag =  false;
   // char buffer[1024];
+  // publisher_ = get_node()->create_publisher<std_msgs::msg::String>("/hunter/battery_status", 10);
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
@@ -254,8 +256,13 @@ controller_interface::return_type HunterController::update(
       // std::cout << "TRYING TO PUBLISH IN REALTIME " << std::endl;
       auto & odometry_message = realtime_odometry_publisher_->msg_;
       odometry_message.header.stamp = time;
-      std::cout << received_data["pose"] << std::endl;
+      // std::cout << received_data["pose"] << std::endl;
       tf2::Quaternion q;
+      // auto message = std_msgs::msg::String();
+      // message.data = static_cast<std::string>(received_data);
+      // publisher_->publish(message);
+      // RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+
       q.setRPY(0, 0,received_data["pose"]["orientation"]["z"] );
       odometry_message.pose.pose.position.x = received_data["pose"]["position"]["x"];//odometry_.getX();
       odometry_message.pose.pose.position.y = received_data["pose"]["position"]["y"];//odometry_.getY();

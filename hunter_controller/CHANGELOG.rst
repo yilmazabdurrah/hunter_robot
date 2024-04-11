@@ -1,5 +1,5 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Changelog for package dogtooth_controller
+Changelog for package hunter_controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 3.16.0 (2023-09-20)
@@ -15,7 +15,7 @@ Changelog for package dogtooth_controller
 
 3.13.0 (2023-08-04)
 -------------------
-* [DogtoothController] Optional tf namespace prefixes instead of using node namespace (`#533 <https://github.com/ros-controls/ros2_controllers/issues/533>`_)
+* [hunterController] Optional tf namespace prefixes instead of using node namespace (`#533 <https://github.com/ros-controls/ros2_controllers/issues/533>`_)
 * Contributors: Ben Holden, Bence Magyar
 
 3.12.0 (2023-07-18)
@@ -31,7 +31,7 @@ Changelog for package dogtooth_controller
 
 3.10.0 (2023-06-04)
 -------------------
-* removed duplicated previous_publish_timestamp\_ increment by publish_period\_ in dogtooth_controller.cpp (`#644 <https://github.com/ros-controls/ros2_controllers/issues/644>`_)
+* removed duplicated previous_publish_timestamp\_ increment by publish_period\_ in hunter_controller.cpp (`#644 <https://github.com/ros-controls/ros2_controllers/issues/644>`_)
 * enable ReflowComments to also use ColumnLimit on comments (`#625 <https://github.com/ros-controls/ros2_controllers/issues/625>`_)
 * Contributors: Sai Kishor Kothakota, Jules CARPENTIER
 
@@ -45,7 +45,7 @@ Changelog for package dogtooth_controller
 
 3.8.0 (2023-05-14)
 ------------------
-* Clear registered handles of DogtoothController on deactivate (`#596 <https://github.com/ros-controls/ros2_controllers/issues/596>`_)
+* Clear registered handles of hunterController on deactivate (`#596 <https://github.com/ros-controls/ros2_controllers/issues/596>`_)
 * Contributors: Noel Jiménez García
 
 3.7.0 (2023-05-02)
@@ -56,7 +56,7 @@ Changelog for package dogtooth_controller
 3.6.0 (2023-04-29)
 ------------------
 * Renovate load controller tests (`#569 <https://github.com/ros-controls/ros2_controllers/issues/569>`_)
-* adjusted open_loop param description in dogtooth_controller_parameter.yaml (`#570 <https://github.com/ros-controls/ros2_controllers/issues/570>`_)
+* adjusted open_loop param description in hunter_controller_parameter.yaml (`#570 <https://github.com/ros-controls/ros2_controllers/issues/570>`_)
 * Contributors: Bence Magyar, muritane
 
 3.5.0 (2023-04-14)
@@ -81,16 +81,16 @@ Changelog for package dogtooth_controller
 
 3.0.0 (2023-01-19)
 ------------------
-* dogtooth base_frame_id param (`#495 <https://github.com/ros-controls/ros2_controllers/issues/495>`_)
+* hunter base_frame_id param (`#495 <https://github.com/ros-controls/ros2_controllers/issues/495>`_)
   changed default value from `odom` -> `base_link`
 * Add backward_ros to all controllers (`#489 <https://github.com/ros-controls/ros2_controllers/issues/489>`_)
-* Remove compilation warnings from DogtoothController (`#477 <https://github.com/ros-controls/ros2_controllers/issues/477>`_)
+* Remove compilation warnings from hunterController (`#477 <https://github.com/ros-controls/ros2_controllers/issues/477>`_)
 * Contributors: Bence Magyar, Denis Štogl, Jakub Delicat
 
 2.15.0 (2022-12-06)
 -------------------
-* [DogtoothController] Use generate parameter library (`#386 <https://github.com/ros-controls/ros2_controllers/issues/386>`_)
-* [DogtoothController] Change units of velocity feedback (`#452 <https://github.com/ros-controls/ros2_controllers/issues/452>`_)
+* [hunterController] Use generate parameter library (`#386 <https://github.com/ros-controls/ros2_controllers/issues/386>`_)
+* [hunterController] Change units of velocity feedback (`#452 <https://github.com/ros-controls/ros2_controllers/issues/452>`_)
 * Contributors: Maciej Stępień, Paul Gesel, Denis Štogl, Bence Magyar
 
 2.14.0 (2022-11-18)
@@ -113,7 +113,7 @@ Changelog for package dogtooth_controller
 2.10.0 (2022-08-01)
 -------------------
 * Formatting changes from pre-commit (`#400 <https://github.com/ros-controls/ros2_controllers/issues/400>`_)
-* Parameter loading fixup in dogtooth and gripper controllers (`#385 <https://github.com/ros-controls/ros2_controllers/issues/385>`_)
+* Parameter loading fixup in hunter and gripper controllers (`#385 <https://github.com/ros-controls/ros2_controllers/issues/385>`_)
 * Contributors: Andy Zelenak, Tyler Weaver
 
 2.9.0 (2022-07-14)
@@ -138,8 +138,8 @@ Changelog for package dogtooth_controller
 
 2.5.0 (2022-05-13)
 ------------------
-* [dogtooth_controller] Made odom topic name relative as it was in ROS1. (`#343 <https://github.com/ros-controls/ros2_controllers/issues/343>`_)
-* Fix wrong integration of velocity feedback in odometry in dogtooth_controller (`#331 <https://github.com/ros-controls/ros2_controllers/issues/331>`_)
+* [hunter_controller] Made odom topic name relative as it was in ROS1. (`#343 <https://github.com/ros-controls/ros2_controllers/issues/343>`_)
+* Fix wrong integration of velocity feedback in odometry in hunter_controller (`#331 <https://github.com/ros-controls/ros2_controllers/issues/331>`_)
 * Contributors: Patrick Roncagliolo, Tony Baltovski
 
 2.4.0 (2022-04-29)
@@ -170,20 +170,20 @@ Changelog for package dogtooth_controller
 
 1.3.0 (2022-01-11)
 ------------------
-* Add publish_rate option for the dogtooth_controller (`#278 <https://github.com/ros-controls/ros2_controllers/issues/278>`_)
-* Fix angular velocity direction of dogtooth_controller odometry (`#281 <https://github.com/ros-controls/ros2_controllers/issues/281>`_)
+* Add publish_rate option for the hunter_controller (`#278 <https://github.com/ros-controls/ros2_controllers/issues/278>`_)
+* Fix angular velocity direction of hunter_controller odometry (`#281 <https://github.com/ros-controls/ros2_controllers/issues/281>`_)
 * Contributors: Benjamin Hug, Paul Verhoeckx
 
 1.2.0 (2021-12-29)
 ------------------
-* Add velocity feedback option for dogtooth_controller (`#260 <https://github.com/ros-controls/ros2_controllers/issues/260>`_)
+* Add velocity feedback option for hunter_controller (`#260 <https://github.com/ros-controls/ros2_controllers/issues/260>`_)
 * Contributors: Patrick Roncagliolo
 
 1.1.0 (2021-10-25)
 ------------------
 * Use common test URDF from descriptions.hpp (`#258 <https://github.com/ros-controls/ros2_controllers/issues/258>`_)
 * Fix header include on Fedora <https://github.com/ros-controls/ros2_controllers/issues/255>`_ (`#256 <https://github.com/ros-controls/ros2_controllers/issues/256>`_)
-* Fix dogtooth accel limit (`#242 <https://github.com/ros-controls/ros2_controllers/issues/242>`_) (`#252 <https://github.com/ros-controls/ros2_controllers/issues/252>`_)
+* Fix hunter accel limit (`#242 <https://github.com/ros-controls/ros2_controllers/issues/242>`_) (`#252 <https://github.com/ros-controls/ros2_controllers/issues/252>`_)
 * Contributors: Denis Štogl, Josh Newans, Noeël Moeskops, bailaC
 
 1.0.0 (2021-09-29)
@@ -211,7 +211,7 @@ Changelog for package dogtooth_controller
 * Force torque sensor broadcaster (`#152 <https://github.com/ros-controls/ros2_controllers/issues/152>`_)
   * Add  rclcpp::shutdown(); to all standalone test functions
 * Fixes for Windows (`#205 <https://github.com/ros-controls/ros2_controllers/issues/205>`_)
-  * Fix MSVC build for dogtooth_controller test
+  * Fix MSVC build for hunter_controller test
 * Fix parameter initialisation for galactic (`#199 <https://github.com/ros-controls/ros2_controllers/issues/199>`_)
 * Contributors: Akash, Denis Štogl, Tim Clephas
 
@@ -225,7 +225,7 @@ Changelog for package dogtooth_controller
 ------------------
 * Migrate from deprecated controller_interface::return_type::SUCCESS -> OK (`#167 <https://github.com/ros-controls/ros2_controllers/issues/167>`_)
 * Add basic user docs pages for each package (`#156 <https://github.com/ros-controls/ros2_controllers/issues/156>`_)
-* [dogtooth_controller] Change header math.h in cmath for better C++ compliance (`#148 <https://github.com/ros-controls/ros2_controllers/issues/148>`_)
+* [hunter_controller] Change header math.h in cmath for better C++ compliance (`#148 <https://github.com/ros-controls/ros2_controllers/issues/148>`_)
   and isnan inclusion.
 * Contributors: Bence Magyar, Olivier Stasse
 
