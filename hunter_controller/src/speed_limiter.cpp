@@ -137,4 +137,3 @@ double SpeedLimiter::limit_jerk(double & v, double v0, double v1, double dt)
 }
 
 }  // namespace hunter_controller
-

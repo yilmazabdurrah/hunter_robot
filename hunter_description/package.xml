@@ -3,14 +3,13 @@
 <package format="3">
   <name>hunter_description</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="espejel41juan@gmail.com">paul</maintainer>
-  <license>TODO: License declaration</license>
+  <description>URDF Description package for hunter</description>
+  <maintainer email="ihroob@lincoln.ac.uk">ibrahim</maintainer>
+  <maintainer email="hari20002010@gmail.com">Hariharan Arunachalam</maintainer>
+  <license>MIT</license>
+  <author email="hari20002010@gmail.com">Hariharan Arunachalam</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-
-  <depend>urdf</depend>
-  <depend>xacro</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
