@@ -2,8 +2,8 @@
 Changelog for package hunter_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.1 (2024-11-25)
+------------------
 * Merge pull request `#9 <https://github.com/LCAS/hunter_robot/issues/9>`_ from hariharan20/main
   Tf fix and package.xml update
 * package.xml update
