@@ -1,3 +1,5 @@
+// ref: https://github.com/ros-controls/ros2_control_demos.git
+
 #ifndef _CARLIKEBOT_SYSTEM_HPP_
 #define _CARLIKEBOT_SYSTEM_HPP_
 
@@ -21,17 +23,14 @@
 
 namespace hunter_description
 {
-struct JointValue
-{
+struct JointValue {
   double position{0.0};
   double velocity{0.0};
   double effort{0.0};
 };
 
-struct Joint
-{
-  explicit Joint(const std::string & name) : joint_name(name)
-  {
+struct Joint {
+  explicit Joint(const std::string & name) : joint_name(name)   {
     state = JointValue();
     command = JointValue();
   }
@@ -42,40 +41,24 @@ struct Joint
   JointValue state;
   JointValue command;
 };
-class CarlikeBotSystemHardware : public hardware_interface::SystemInterface
-{
+
+class CarlikeBotSystemHardware : public hardware_interface::SystemInterface {
 public:
   RCLCPP_SHARED_PTR_DEFINITIONS(CarlikeBotSystemHardware);
 
-  hardware_interface::CallbackReturn on_init(
-    const hardware_interface::HardwareInfo & info) override;
+  hardware_interface::CallbackReturn on_init(const hardware_interface::HardwareInfo & info) override;
 
   std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
-
   std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;
+  hardware_interface::CallbackReturn on_activate(const rclcpp_lifecycle::State & previous_state) override;
+  hardware_interface::CallbackReturn on_deactivate(const rclcpp_lifecycle::State & previous_state) override;
+  hardware_interface::return_type read(const rclcpp::Time & time, const rclcpp::Duration & period) override;
+  hardware_interface::return_type write(const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
-  hardware_interface::CallbackReturn on_activate(
-    const rclcpp_lifecycle::State & previous_state) override;
-
-  hardware_interface::CallbackReturn on_deactivate(
-    const rclcpp_lifecycle::State & previous_state) override;
-
-  hardware_interface::return_type read(
-    const rclcpp::Time & time, const rclcpp::Duration & period) override;
-
-  hardware_interface::return_type write(
-    const rclcpp::Time & time, const rclcpp::Duration & period) override;
-
-  /// Get the logger of the SystemInterface.
-  /**
-   * \return logger of the SystemInterface.
-   */
+  // Get the logger of the SystemInterface.
   rclcpp::Logger get_logger() const { return *logger_; }
 
-  /// Get the clock of the SystemInterface.
-  /**
-   * \return clock of the SystemInterface.
-   */
+  // Get the clock of the SystemInterface.
   rclcpp::Clock::SharedPtr get_clock() const { return clock_; }
 
 private:
@@ -86,9 +69,6 @@ private:
   // Objects for logging
   std::shared_ptr<rclcpp::Logger> logger_;
   rclcpp::Clock::SharedPtr clock_;
-
-  // std::vector<std::tuple<std::string, double, double>>
-  //   hw_interfaces_;  // name of joint, state, command
   std::map<std::string, Joint> hw_interfaces_;
 };
 

@@ -43,17 +43,8 @@
 
     <!-- REAR WHEELS ================================================================ -->
     <!-- VIRTUAL REAR WHEEL -->
-    <link name="virtual_rear_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <cylinder length="0.01" radius="0.01"/>
-            </geometry>
-            <material name="invisible">
-                <color rgba="0.0 0.0 0.0 0.0"/>
-            </material>
-        </visual>
-    </link>
+    <link name="virtual_rear_wheel"/>
+
     <joint name="virtual_rear_wheel_joint" type="continuous">
         <parent link="chassis"/>
         <child link="virtual_rear_wheel"/>
@@ -117,17 +108,8 @@
 
     <!-- ============================================================================ -->
     <!-- VIRTUAL FRONT WHEEL -->
-    <link name="virtual_front_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <cylinder length="0.01" radius="0.01"/>
-            </geometry>
-            <material name="invisible">
-                <color rgba="0.0 0.0 0.0 0.0"/>
-            </material>
-        </visual>
-    </link>
+    <link name="virtual_front_wheel"/>
+
     <joint name="virtual_front_wheel_joint" type="revolute">
         <parent link="chassis"/>
         <child link="virtual_front_wheel"/>
@@ -138,21 +120,8 @@
     </joint>
 
     <!-- FRONT LEFT WHEEL JOINT & LINK -->
-    <link name="front_left_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
-            </geometry>
-        </collision>
-        <xacro:inertial_wheel/>
-    </link>
+    <link name="front_left_wheel"/>
+
     <joint name="front_left_wheel_joint" type="revolute">
         <parent link="chassis"/>
         <child link="front_left_wheel"/> 
@@ -163,8 +132,41 @@
         <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/>
     </joint>
 
+    <link name="front_left_wheel_cont">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
+            </geometry>
+        </collision>
+        <xacro:inertial_wheel/>
+    </link>
+    <joint name="front_left_wheel_cont_joint" type="continuous">
+        <parent link="front_left_wheel"/>
+        <child link="front_left_wheel_cont"/> 
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <axis   xyz="0 0 -1" />
+        <mimic joint="virtual_rear_wheel_joint" multiplier="1.0" offset="0.0"/>
+    </joint>
+
     <!-- FRONT RIGHT WHEEL JOINT & LINK -->
-    <link name="front_right_wheel">
+    <link name="front_right_wheel"/>
+    <joint name="front_right_wheel_joint" type="revolute">
+        <parent link="chassis"/>
+        <child link="front_right_wheel"/> 
+        <origin xyz="${x_base_to_front}  -${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
+        <axis   xyz="0 1 0" />
+        <limit  lower="-0.69"  upper="0.69"  effort="10.0"  velocity="0" />
+        <dynamics damping="0.2"/>
+        <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/>
+    </joint>
+    <link name="front_right_wheel_cont">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -179,14 +181,12 @@
         </collision>
         <xacro:inertial_wheel/>
     </link>
-    <joint name="front_right_wheel_joint" type="revolute">
-        <parent link="chassis"/>
-        <child link="front_right_wheel"/> 
-        <origin xyz="${x_base_to_front}  -${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
-        <axis   xyz="0 1 0" />
-        <limit  lower="-0.69"  upper="0.69"  effort="10.0"  velocity="0" />
-        <dynamics damping="0.2"/>
-        <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/>
+    <joint name="front_right_wheel_cont_joint" type="continuous">
+        <parent link="front_right_wheel"/>
+        <child link="front_right_wheel_cont"/> 
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <axis   xyz="0 0 -1" />
+        <mimic joint="virtual_rear_wheel_joint" multiplier="1.0" offset="0.0"/>
     </joint>
 
 </robot>
