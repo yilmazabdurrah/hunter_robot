@@ -5,7 +5,8 @@
     <!-- Robot website: https://robosavvy.co.uk/agilex-hunter-2b.html -->
 
     <!-- Include the inertial values from the following -->
-    <xacro:include filename="inertial_macros.xacro"/>    
+    <xacro:include filename="inertial_macros.xacro"/> 
+    <xacro:include filename="meshes.xacro"/> 
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="z_base_to_wheel" value="-0.19558" />
@@ -24,20 +25,7 @@
     </joint>
 
     <link name="chassis">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/> 
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/chassis.dae" />
-            </geometry>
-        </visual>
-
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/> 
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/chassis.dae" />
-            </geometry>
-        </collision>
-
+        <xacro:chassis_mesh/>
         <xacro:inertial_chassis/>
     </link>
 
@@ -56,18 +44,7 @@
 
     <!-- REAR LEFT WHEEL JOINT & LINK -->
     <link name="rear_left_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_left_wheel.dae" />
-            </geometry>        
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_left_wheel.dae" />
-            </geometry>            
-        </collision>
+        <xacro:rear_left_wheel_mesh/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="rear_left_wheel_joint" type="continuous">
@@ -82,18 +59,7 @@
 
     <!-- REAR RIGHT WHEEL JOINT & LINK -->
     <link name="rear_right_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_right_wheel.dae" />
-            </geometry>        
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_right_wheel.dae" />
-            </geometry>            
-        </collision>
+        <xacro:rear_right_wheel_mesh/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="rear_right_wheel_joint" type="continuous">
@@ -133,18 +99,7 @@
     </joint>
 
     <link name="front_left_wheel_cont">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
-            </geometry>
-        </collision>
+        <xacro:front_left_wheel_mesh/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="front_left_wheel_cont_joint" type="continuous">
@@ -167,18 +122,7 @@
         <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/>
     </joint>
     <link name="front_right_wheel_cont">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_right_wheel.dae" />
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_right_wheel.dae" />
-            </geometry>
-        </collision>
+        <xacro:front_right_wheel_mesh/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="front_right_wheel_cont_joint" type="continuous">
