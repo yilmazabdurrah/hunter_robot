@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="carlikebot_ros2_control" params="name">
+  <xacro:macro name="hunter_ros2_control" params="name">
 
     <ros2_control name="${name}" type="system">
       <hardware>
         <plugin>hunter_description/CarlikeBotSystemHardware</plugin>
-        <param name="param_hw_start_duration_sec">0</param>
-        <param name="param_hw_stop_duration_sec">3.0</param>
       </hardware>
       <joint name="virtual_front_wheel_joint">
         <command_interface name="position"/>

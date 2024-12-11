@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <xacro:macro name="hunter">
+
     <!-- REF: https://youtu.be/BcjHyhV0kIs?si=dUpg7IF-kHSUgB-w -->
     <!-- Robot website: https://robosavvy.co.uk/agilex-hunter-2b.html -->
 
@@ -13,6 +15,7 @@
     <xacro:property name="x_base_to_rear" value="-0.28" />
     <xacro:property name="x_base_to_front" value="0.37142" />
     <xacro:property name="y_base_to_wheel" value="0.2925" />
+    <xacro:property name="max_steer_angle_central" value="0.461" />
 
     <!-- BASE LINK ================================================================== -->
     <link name="base_link"/>
@@ -25,14 +28,13 @@
     </joint>
 
     <link name="chassis">
-        <xacro:chassis_mesh/>
+        <xacro:mesh name="chassis"/>
         <xacro:inertial_chassis/>
     </link>
 
     <!-- REAR WHEELS ================================================================ -->
     <!-- VIRTUAL REAR WHEEL -->
     <link name="virtual_rear_wheel"/>
-
     <joint name="virtual_rear_wheel_joint" type="continuous">
         <parent link="chassis"/>
         <child link="virtual_rear_wheel"/>
@@ -44,7 +46,7 @@
 
     <!-- REAR LEFT WHEEL JOINT & LINK -->
     <link name="rear_left_wheel">
-        <xacro:rear_left_wheel_mesh/>
+        <xacro:mesh name="rear_left_wheel"/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="rear_left_wheel_joint" type="continuous">
@@ -59,7 +61,7 @@
 
     <!-- REAR RIGHT WHEEL JOINT & LINK -->
     <link name="rear_right_wheel">
-        <xacro:rear_right_wheel_mesh/>
+        <xacro:mesh name="rear_right_wheel"/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="rear_right_wheel_joint" type="continuous">
@@ -75,31 +77,29 @@
     <!-- ============================================================================ -->
     <!-- VIRTUAL FRONT WHEEL -->
     <link name="virtual_front_wheel"/>
-
     <joint name="virtual_front_wheel_joint" type="revolute">
         <parent link="chassis"/>
         <child link="virtual_front_wheel"/>
         <origin xyz="${x_base_to_front} 0 ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
         <axis   xyz="0 1 0" />
-        <limit  lower="-0.69"  upper="0.69"  effort="10.0"  velocity="0" />
+        <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="0" />
         <dynamics damping="0.2"/>
     </joint>
 
     <!-- FRONT LEFT WHEEL JOINT & LINK -->
     <link name="front_left_wheel"/>
-
     <joint name="front_left_wheel_joint" type="revolute">
         <parent link="chassis"/>
         <child link="front_left_wheel"/> 
         <origin xyz="${x_base_to_front} ${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
         <axis   xyz="0 1 0" />
-        <limit  lower="-0.69"  upper="0.69"  effort="10.0"  velocity="0" />
+        <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="0" />
         <dynamics damping="0.2"/>
         <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/>
     </joint>
 
     <link name="front_left_wheel_cont">
-        <xacro:front_left_wheel_mesh/>
+        <xacro:mesh name="front_left_wheel"/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="front_left_wheel_cont_joint" type="continuous">
@@ -117,12 +117,13 @@
         <child link="front_right_wheel"/> 
         <origin xyz="${x_base_to_front}  -${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
         <axis   xyz="0 1 0" />
-        <limit  lower="-0.69"  upper="0.69"  effort="10.0"  velocity="0" />
+        <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="0" />
         <dynamics damping="0.2"/>
         <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/>
     </joint>
+    
     <link name="front_right_wheel_cont">
-        <xacro:front_right_wheel_mesh/>
+        <xacro:mesh name="front_right_wheel"/>
         <xacro:inertial_wheel/>
     </link>
     <joint name="front_right_wheel_cont_joint" type="continuous">
@@ -132,5 +133,7 @@
         <axis   xyz="0 0 -1" />
         <mimic joint="virtual_rear_wheel_joint" multiplier="1.0" offset="0.0"/>
     </joint>
+
+    </xacro:macro>
 
 </robot>

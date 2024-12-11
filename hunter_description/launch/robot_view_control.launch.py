@@ -56,7 +56,7 @@ def generate_launch_description():
         [
             FindPackageShare("hunter_description"),
             "rviz",
-            "hunter.rviz",
+            "robot_view_control.rviz",
         ]
     )
 

@@ -1,79 +1,19 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <xacro:macro name="chassis_mesh">
+    <xacro:macro name="mesh" params="name">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/> 
             <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/chassis.dae" />
+                <mesh filename="file://$(find hunter_description)/meshes/${name}.dae" />
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/> 
             <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/chassis.dae" />
+                <mesh filename="file://$(find hunter_description)/meshes/${name}.dae" />
             </geometry>
         </collision>
-    </xacro:macro>  
-
-    <xacro:macro name="rear_left_wheel_mesh">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_left_wheel.dae" />
-            </geometry>        
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_left_wheel.dae" />
-            </geometry>            
-        </collision>
-    </xacro:macro>  
-
-    <xacro:macro name="rear_right_wheel_mesh">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_right_wheel.dae" />
-            </geometry>        
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/rear_right_wheel.dae" />
-            </geometry>            
-        </collision>
-    </xacro:macro>  
-
-    <xacro:macro name="front_left_wheel_mesh">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_left_wheel.dae" />
-            </geometry>
-        </collision>
-    </xacro:macro>  
-
-    <xacro:macro name="front_right_wheel_mesh">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_right_wheel.dae" />
-            </geometry>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="file://$(find hunter_description)/meshes/front_right_wheel.dae" />
-            </geometry>
-        </collision>
-    </xacro:macro>  
+    </xacro:macro>
 
 </robot>

@@ -43,7 +43,7 @@ def generate_launch_description():
     }
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare("hunter_description"), "rviz", "hunter_view.rviz"]
+        [FindPackageShare("hunter_description"), "rviz", "robot_view.rviz"]
     )
 
     joint_state_publisher_node = Node(

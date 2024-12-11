@@ -203,6 +203,12 @@ hardware_interface::CallbackReturn CarlikeBotSystemHardware::on_deactivate( cons
 }
 
 hardware_interface::return_type CarlikeBotSystemHardware::read( const rclcpp::Time & /*time*/, const rclcpp::Duration & period) {
+  hw_interfaces_["steering"].state.position = hw_interfaces_["steering"].command.position;
+
+  hw_interfaces_["traction"].state.velocity = hw_interfaces_["traction"].command.velocity;
+  hw_interfaces_["traction"].state.position +=
+    hw_interfaces_["traction"].state.velocity * period.seconds();
+
   return hardware_interface::return_type::OK;
 }
 
