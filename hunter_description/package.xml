@@ -2,37 +2,43 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>hunter_description</name>
-  <version>0.0.0</version>
+  <version>0.0.1</version>
   <description>URDF Description package for hunter</description>
+  
   <maintainer email="ihroob@lincoln.ac.uk">Ibrahim Hroob</maintainer>
-  <maintainer email="hari20002010@gmail.com">Hariharan Arunachalam</maintainer>
+  
+  <author email="ihroob@lincoln.ac.uk">Ibrahim Hroob</author>
+
   <license>Apache-2.0</license>
-  <author email="hari20002010@gmail.com">Hariharan Arunachalam</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <!-- ROS 2 Core Dependencies -->
-  <exec_depend>rclcpp</exec_depend>
-  <exec_depend>rclpy</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
-  <exec_depend>geometry_msgs</exec_depend>
+  <depend>backward_ros</depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
 
-  <!-- Robot Description -->
-  <exec_depend>urdf</exec_depend>
-  <exec_depend>xacro</exec_depend>
-
-  <!-- Robot Control -->
+  <exec_depend>bicycle_steering_controller</exec_depend>
   <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>joint_state_controller</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
-
-  <!-- Additional Packages -->
+  <exec_depend>ros2_control_demo_description</exec_depend>
   <exec_depend>ros2_control</exec_depend>
   <exec_depend>ros2_controllers</exec_depend>
+  <exec_depend>ros2controlcli</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>xacro</exec_depend>
 
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>launch_testing_ros</test_depend>
+  <test_depend>liburdfdom-tools</test_depend>
+  <test_depend>ros2_control_demo_testing</test_depend>
+  <test_depend>xacro</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
