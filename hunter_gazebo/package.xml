@@ -4,11 +4,11 @@
   <name>hunter_gazebo</name>
   <version>0.0.1</version>
   <description>Gazebo package for hunter robot</description>
-  <maintainer email="ihroob@lincoln.ac.uk">Dr. Ibrahim Hroob</maintainer>
+  <maintainer email="ihroob@lincoln.ac.uk">Ibrahim Hroob</maintainer>
   <maintainer email="hari20002010@gmail.com">Hariharan Arunachalam</maintainer>
   <license>Apache-2.0</license>
   <author email="hari20002010@gmail.com">Hariharan Arunachalam</author>
-  <author email="ihroob@lincoln.ac.uk">Dr. Ibrahim Hroob</author>
+  <author email="ihroob@lincoln.ac.uk">Ibrahim Hroob</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
