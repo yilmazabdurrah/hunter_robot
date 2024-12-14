@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-  <!-- The values are from: https://github.com/agilexrobotics/ugv_gazebo_sim/blob/master/hunter/hunter2_base/urdf/hunter2_base_gazebo.xacro -->
-
   <xacro:macro name="inertial_chassis">
     <inertial>
       <origin

@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- REF: https://youtu.be/BcjHyhV0kIs?si=dUpg7IF-kHSUgB-w -->
-  <!-- Robot website: https://robosavvy.co.uk/agilex-hunter-2b.html -->
-
   <!-- Include the inertial values from the following -->
   <xacro:include filename="inertial_macros.xacro"/> 
   <xacro:include filename="meshes.xacro"/> 
@@ -15,14 +12,12 @@
   <xacro:property name="y_base_to_wheel" value="0.2925" />
   <xacro:property name="max_steer_angle_central" value="0.461" />
 
-  <!-- BASE LINK ================================================================== -->
   <link name="base_link"/>
 
-  <!-- CHASSIS JOINT & LINK ======================================================= -->
   <joint name="chassis_joint" type="fixed">
     <parent link="base_link"/>
     <child link="chassis"/>
-    <origin xyz="0 0 0.37" rpy="0 0 0" />
+    <origin rpy="0 0 0" xyz="0 0 0.37"/>
   </joint>
 
   <link name="chassis">
@@ -30,8 +25,6 @@
     <xacro:inertial_chassis/>
   </link>
 
-  <!-- REAR WHEELS ================================================================ -->
-  <!-- REAR LEFT WHEEL JOINT & LINK -->
   <link name="rear_left_wheel">
     <xacro:mesh name="rear_left_wheel"/>
     <xacro:inertial_wheel/>
@@ -45,7 +38,6 @@
     <limit effort="10.0" velocity="10.0"/>
   </joint>
 
-  <!-- REAR RIGHT WHEEL JOINT & LINK -->
   <link name="rear_right_wheel">
     <xacro:mesh name="rear_right_wheel"/>
     <xacro:inertial_wheel/>
@@ -59,8 +51,6 @@
     <limit effort="10.0" velocity="10.0"/>
   </joint>
 
-  <!-- ============================================================================ -->
-  <!-- FRONT LEFT STEERING JOINT & LINK -->
   <link name="front_left_steering_link">
     <xacro:virtual/>
     <xacro:inertial_steering_link/>
@@ -70,12 +60,10 @@
     <child link="front_left_steering_link"/> 
     <origin xyz="${x_base_to_front} ${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
     <axis   xyz="0 1 0" />
-    <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="0" />
+    <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="1" />
     <dynamics damping="0.2"/>
-    <!-- <mimic joint="virtual_front_wheel_joint" multiplier="1.0" offset="0.0"/> -->
   </joint>
 
-  <!-- FRONT LEFT WHEEL JOINT & LINK -->
   <link name="front_left_wheel">
     <xacro:mesh name="front_left_wheel"/>
     <xacro:inertial_wheel/>
@@ -87,7 +75,6 @@
     <axis   xyz="0 0 -1" />
   </joint>
 
-  <!-- FRONT RIGHT STEERING JOINT & LINK -->
   <link name="front_right_steering_link">
     <xacro:virtual/>
     <xacro:inertial_steering_link/>
@@ -97,12 +84,10 @@
     <child link="front_right_steering_link"/> 
     <origin xyz="${x_base_to_front}  -${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
     <axis   xyz="0 1 0" />
-    <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="0" />
+    <limit  lower="-${max_steer_angle_central}"  upper="${max_steer_angle_central}"  effort="10.0"  velocity="1" />
     <dynamics damping="0.2"/>
-    <!-- <mimic joint="front_left_wheel_joint" multiplier="1.0" offset="0.0"/> -->
   </joint>
   
-  <!-- FRONT RIGHT WHEEL JOINT & LINK -->
   <link name="front_right_wheel">
     <xacro:mesh name="front_right_wheel"/>
     <xacro:inertial_wheel/>
@@ -112,7 +97,6 @@
     <child link="front_right_wheel"/> 
     <origin xyz="0 0 0" rpy="0 0 0" />
     <axis   xyz="0 0 -1" />
-    <!-- <mimic joint="rear_left_wheel_joint" multiplier="1.0" offset="0.0"/> -->
   </joint>
 
 </robot>
