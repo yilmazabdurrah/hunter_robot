@@ -18,7 +18,7 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('hunter_description'),'launch','rsp.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true'}.items()
+                )]), launch_arguments={'remap_odometry_tf': 'true', 'gui': 'true'}.items()
     )
 
     gazebo_params_file = os.path.join(get_package_share_directory('hunter_gazebo'),'config','gazebo_params.yaml')
@@ -35,6 +35,31 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'hunter'],
                         output='screen')
+    
+
+    bicycle_steering_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner.py",
+        arguments=["bicycle_steering_controller"],
+    )
+
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner.py",
+        arguments=["joint_state_broadcaster"],
+    )
+
+
+
+    # Launch them all!
+    return LaunchDescription([
+        rsp,
+        gazebo,
+        spawn_entity,
+        bicycle_steering_controller_spawner,
+        joint_broad_spawner
+    ])
+
 
     # diff_drive_spawner = Node(
     #     package="controller_manager",
@@ -42,23 +67,22 @@ def generate_launch_description():
     #     arguments=["diff_drive_controller"],
     # )
 
-    joint_broad_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["joint_state_broadcaster"],
-    )
+    # joint_broad_spawner = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["joint_state_broadcaster"],
+    # )
 
-    controller = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["gazebo_ros_ackermann_drive"],
-    )
+    # controller = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["gazebo_ros_ackermann_drive"],
+    # )
 
     # Launch them all!
-    return LaunchDescription([
-        rsp,
-        gazebo,
-        spawn_entity,
-        # diff_drive_spawner,
-        joint_broad_spawner
-    ])
+    # return LaunchDescription([
+    #     rsp,
+    #     gazebo,
+    #     spawn_entity,
+    #     # joint_broad_spawner
+    # ])

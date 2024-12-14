@@ -1,0 +1,36 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    ackermann_steering_controller:
+      type: ackermann_steering_controller/AckermannSteeringController
+
+ackermann_steering_controller:
+  ros__parameters:
+    reference_timeout: 1.0  # Timeout for controller references after which they will be reset. This is especially useful for controllers that can cause unwanted and dangerous behaviour if reference is not reset, e.g., velocity controllers. If value is 0 the reference is reset after each run
+    front_steering: true    # Is the steering on the front of the robot?
+    rear_wheels_names: ['rear_right_wheel_joint', 'rear_left_wheel_joint']        # Names of rear wheel joints
+    front_wheels_names: ['front_right_steering_joint', front_left_steering_joint] # Names of front wheel joints
+    open_loop: false  # Choose if open-loop or not (feedback) is used for odometry calculation
+    velocity_rolling_window_size: 10  # The number of velocity samples to average together to compute the odometry twist.linear.x and twist.angular.z velocities
+    base_frame_id: base_link  # Base frame_id set to value of base_frame_id
+    odom_frame_id: odom       # Odometry frame_id set to value of odom_frame_id
+    enable_odom_tf: true      # Publishing to tf is enabled or disabled?
+    twist_covariance_diagonal: [0.0, 7.0, 14.0, 21.0, 28.0, 35.0] # diagonal values of twist covariance matrix
+    pose_covariance_diagonal: [0.0, 7.0, 14.0, 21.0, 28.0, 35.0]  # diagonal values of pose covariance matrix
+    position_feedback: true # Choice of feedback type, if position_feedback is false then ``HW_IF_VELOCITY`` is taken as interface type, if position_feedback is true then ``HW_IF_POSITION`` is taken as interface type"
+    use_stamped_vel: true   # Choice of vel type, if use_stamped_vel is false then ``geometry_msgs::msg::Twist`` is taken as vel msg type, if use_stamped_vel is true then ``geometry_msgs::msg::TwistStamped`` is taken as vel msg type",
+    front_wheel_track: 0.605    # Front wheel track length. For details see: https://en.wikipedia.org/wiki/Wheelbase
+    rear_wheel_track: 0.605     # Rear wheel track length. For details see: https://en.wikipedia.org/wiki/Wheelbase
+    wheelbase: 0.65             # Distance between front and rear wheels. For details see: https://en.wikipedia.org/wiki/Wheelbase
+    front_wheels_radius: 0.165  # Front wheels radius
+    rear_wheels_radius: 0.165   # Rear wheels radius
+
+joint_state_broadcaster:
+  ros__parameters:
+    extra_joints: ["front_left_wheel_joint",  "front_right_wheel_joint"]
+

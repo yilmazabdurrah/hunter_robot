@@ -19,10 +19,9 @@ import launch_ros.substitutions
 def generate_launch_description():
  
   # Constants for paths to different files and folders
-  gazebo_models_path = 'models'
-  package_name = 'hunter_gazebo'
+  package_name = 'hunter_description'
   robot_name_in_model = 'hunter'
-  rviz_config_file_path = 'rviz/rviz.rviz'
+  rviz_config_file_path = 'config/view_hunter.rviz'
   urdf_file_path = 'description/robot.urdf.xacro'
  
   # Pose where we want to spawn the robot
@@ -191,7 +190,7 @@ def generate_launch_description():
   ld.add_action(start_gazebo_server_cmd)
   ld.add_action(start_gazebo_client_cmd)
   ld.add_action(spawn_entity_cmd)
-  ld.add_action(start_robot_state_publisher_cmd)
+  # ld.add_action(start_robot_state_publisher_cmd)
   # ld.add_action(start_joint_state_publisher_gui_node)
   # ld.add_action(start_dummy_sensors)
   ld.add_action(start_rviz_cmd)

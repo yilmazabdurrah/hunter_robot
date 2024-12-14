@@ -22,7 +22,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "remap_odometry_tf",
-            default_value="true",
+            default_value="false",
             description="Remap odometry TF from the steering controller to the TF tree.",
         )
     )
