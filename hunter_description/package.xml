@@ -20,7 +20,7 @@
   <depend>rclcpp</depend>
   <depend>rclcpp_lifecycle</depend>
 
-  <exec_depend>bicycle_steering_controller</exec_depend>
+  <exec_depend>tricycle_controller</exec_depend>
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>
   <exec_depend>joint_state_publisher_gui</exec_depend>
