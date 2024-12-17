@@ -22,12 +22,18 @@ def generate_launch_description():
             description="Start Rviz2 and Joint State Publisher gui automatically \
         with this launch file.",
         ),
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='true',
+            description='Use sim time if true',
+        ),
     ]
 
     # Initialize Arguments
-    description_file = LaunchConfiguration("description_file")
     gui = LaunchConfiguration("gui")
-
+    use_sim_time = LaunchConfiguration('use_sim_time')
+    description_file = LaunchConfiguration("description_file")
+    
     # Get URDF via xacro
     robot_description_content = Command(
         [
@@ -39,7 +45,8 @@ def generate_launch_description():
         ]
     )
     robot_description = {
-        "robot_description": ParameterValue(robot_description_content, value_type=str)
+        "robot_description": ParameterValue(robot_description_content, value_type=str),
+        'use_sim_time': ParameterValue(use_sim_time, value_type=bool),
     }
 
     rviz_config_file = PathJoinSubstitution(

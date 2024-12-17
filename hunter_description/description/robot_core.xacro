@@ -95,7 +95,6 @@
     <xacro:inertial_wheel/>
   </link>
   <joint name="front_right_wheel_joint" type="continuous">
-    <!-- <mimic joint="front_left_wheel_joint"/> -->
     <parent link="front_right_steering_link"/>
     <child link="front_right_wheel"/> 
     <origin xyz="0 0 0" rpy="0 0 0" />

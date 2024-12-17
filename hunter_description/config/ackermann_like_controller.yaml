@@ -3,7 +3,7 @@ controller_manager:
     update_rate: 50 # Hz
     use_sim_time: true
 
-    tricycle_controller:
+    ackermann_like_controller:
       type: tricycle_controller/TricycleController
 
     joint_state_broadcaster:
@@ -14,7 +14,7 @@ joint_state_broadcaster:
     extra_joints: ["front_left_wheel_joint", "front_right_wheel_joint"]
 
 
-tricycle_controller:
+ackermann_like_controller:
   ros__parameters:
     # Model
     traction_joint_name: rear_left_wheel_joint # Name of traction joint in URDF

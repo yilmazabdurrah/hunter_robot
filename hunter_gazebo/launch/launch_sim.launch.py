@@ -1,27 +1,22 @@
 import os
 
-from ament_index_python.packages import get_package_share_directory
-
-from launch.actions import DeclareLaunchArgument
-from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-
 from launch_ros.actions import Node
+
+from launch import LaunchDescription
+from launch.event_handlers import OnProcessExit
+
+from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
+
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
+from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
+
+from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-
-    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
-    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
-
-    rsp = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('hunter_description'),'launch','rsp.launch.py'
-                )]), launch_arguments={'remap_odometry_tf': 'true', 'gui': 'true'}.items()
-    )
-
-    gazebo_params_file = os.path.join(get_package_share_directory('hunter_gazebo'),'config','gazebo_params.yaml')
+    gazebo_params_file = os.path.join(get_package_share_directory("hunter_gazebo"),'config','gazebo_params.yaml')
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
@@ -30,59 +25,74 @@ def generate_launch_description():
                     launch_arguments={'extra_gazebo_args': '--ros-args --params-file ' + gazebo_params_file}.items()
              )
 
-    # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
+    hunter_description_path = os.path.join(
+        get_package_share_directory('hunter_description'))
+
+
+    # Get URDF via xacro
+    robot_description_content = Command(
+        [
+            PathJoinSubstitution([FindExecutable(name="xacro")]),
+            " ",
+            PathJoinSubstitution(
+                [FindPackageShare("hunter_description"), "description", 'robot.urdf.xacro']
+            ),
+        ]
+    )
+    robot_description = {
+        "robot_description": ParameterValue(robot_description_content, value_type=str)
+    }
+
+
+    node_robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        output='screen',
+        parameters=[robot_description]
+    )
+
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'hunter'],
                         output='screen')
-    
 
-    bicycle_steering_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner.py",
-        arguments=["bicycle_steering_controller"],
+    load_joint_state_broadcaster = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+             'joint_state_broadcaster'],
+        output='screen'
     )
 
-    joint_broad_spawner = Node(
-        package="controller_manager",
-        executable="spawner.py",
-        arguments=["joint_state_broadcaster"],
+    load_tricycle_controller = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+             'ackermann_like_controller'],
+        output='screen'
     )
 
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        arguments=[
+            '-d',
+            os.path.join(hunter_description_path, 'rviz/robot_view.rviz'),
+        ],
+        output='screen',
+    )
 
-
-    # Launch them all!
     return LaunchDescription([
-        rsp,
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=spawn_entity,
+                on_exit=[load_joint_state_broadcaster],
+            )
+        ),
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=load_joint_state_broadcaster,
+                on_exit=[load_tricycle_controller],
+            )
+        ),
         gazebo,
+        rviz,
+        node_robot_state_publisher,
         spawn_entity,
-        bicycle_steering_controller_spawner,
-        joint_broad_spawner
     ])
-
-
-    # diff_drive_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["diff_drive_controller"],
-    # )
-
-    # joint_broad_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["joint_state_broadcaster"],
-    # )
-
-    # controller = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["gazebo_ros_ackermann_drive"],
-    # )
-
-    # Launch them all!
-    # return LaunchDescription([
-    #     rsp,
-    #     gazebo,
-    #     spawn_entity,
-    #     # joint_broad_spawner
-    # ])
