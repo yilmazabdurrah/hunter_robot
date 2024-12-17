@@ -96,6 +96,12 @@ Use the keyboard inputs to move the robot in the simulation.
 
 ---
 
+## Robot Controller Configuration
+
+The main configuration of the robot controller is available [here](https://github.com/LCAS/hunter_robot/blob/refactor/hunter_description/config/ackermann_like_controller.yaml)
+
+---
+
 ## Robot Specifications
 
 The primary robot parameters, such as mass, wheel size, and turning angles, are derived from the manufacturer's specifications and the following reference repository:
