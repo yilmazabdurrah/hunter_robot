@@ -68,7 +68,7 @@ ros2 launch hunter_description robot_view.launch.py
 
 This launch file starts Rviz and loads the Hunter V2 model.
 
-![Rviz Simulation](https://github.com/user-attachments/assets/1cc10c03-fad7-47b0-8816-74c49d79be31)
+[Rviz Simulation](https://github.com/user-attachments/assets/1cc10c03-fad7-47b0-8816-74c49d79be31)
 
 ---
 
@@ -80,7 +80,7 @@ To load the Hunter V2 in a Gazebo simulation environment:
 ros2 launch hunter_gazebo launch_sim.launch.py
 ```
 
-![Gazebo Simulation](https://github.com/user-attachments/assets/90757617-af3b-4bc8-bf1f-f08c5ecc1247)
+[Gazebo Simulation](https://github.com/user-attachments/assets/90757617-af3b-4bc8-bf1f-f08c5ecc1247)
 
 ---
 
