@@ -2,7 +2,7 @@
 
 This repository contains the **URDF** description and Gazebo simulation for the **Hunter V2** robot. The Hunter V2 is an **Ackermann-steered** mobile robot with front-wheel steering, simulated using ROS 2 control.
 
-Official Robot Website: [AgileX Hunter V2B](https://robosavvy.co.uk/agilex-hunter-2b.html)
+Official Robot Website: [AgileX Hunter V2B](https://global.agilex.ai/products/hunter-2-0)
 
 ---
 
