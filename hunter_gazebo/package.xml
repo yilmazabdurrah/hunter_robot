@@ -16,6 +16,7 @@
   <test_depend>ament_lint_common</test_depend>
   <exec_depend>hunter_description</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>gazebo-ros2-control</exec_depend>
   <exec_depend>controller_manager</exec_depend>
   
   <export>
