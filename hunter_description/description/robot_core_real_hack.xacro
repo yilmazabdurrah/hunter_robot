@@ -29,7 +29,7 @@
     <xacro:mesh name="rear_left_wheel"/>
     <xacro:inertial_wheel/>
   </link>
-  <joint name="rear_left_wheel_joint" type="fixed">
+  <joint name="rear_left_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="rear_left_wheel"/> 
     <origin xyz="${x_base_to_rear} ${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
@@ -43,7 +43,7 @@
     <xacro:mesh name="rear_right_wheel"/>
     <xacro:inertial_wheel/>
   </link>
-  <joint name="rear_right_wheel_joint" type="fixed">
+  <joint name="rear_right_wheel_joint" type="continuous">
     <parent link="chassis"/>
     <child link="rear_right_wheel"/> 
     <origin xyz="${x_base_to_rear} -${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
@@ -58,7 +58,7 @@
     <xacro:virtual/>
     <xacro:inertial_steering_link/>
   </link>
-  <joint name="front_left_steering_joint" type="fixed">
+  <joint name="front_left_steering_joint" type="revolute">
     <parent link="chassis"/>
     <child link="front_left_steering_link"/> 
     <origin xyz="${x_base_to_front} ${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
@@ -71,18 +71,19 @@
     <xacro:mesh name="front_left_wheel"/>
     <xacro:inertial_wheel/>
   </link>
-  <joint name="front_left_wheel_joint" type="fixed">
+  <joint name="front_left_wheel_joint" type="continuous">
     <parent link="front_left_steering_link"/>
     <child link="front_left_wheel"/> 
     <origin xyz="0 0 0" rpy="0 0 0" />
     <axis   xyz="0 0 -1" />
+    <mimic joint="rear_left_wheel_joint" multiplier="1.0" offset="0.0"/>
   </joint>
 
   <link name="front_right_steering_link">
     <xacro:virtual/>
     <xacro:inertial_steering_link/>
   </link>
-  <joint name="front_right_steering_joint" type="fixed">
+  <joint name="front_right_steering_joint" type="revolute">
     <parent link="chassis"/>
     <child link="front_right_steering_link"/> 
     <origin xyz="${x_base_to_front}  -${y_base_to_wheel} ${z_base_to_wheel}" rpy="${pi/2} 0 0" />
@@ -96,11 +97,12 @@
     <xacro:mesh name="front_right_wheel"/>
     <xacro:inertial_wheel/>
   </link>
-  <joint name="front_right_wheel_joint" type="fixed">
+  <joint name="front_right_wheel_joint" type="continuous">
     <parent link="front_right_steering_link"/>
     <child link="front_right_wheel"/> 
     <origin xyz="0 0 0" rpy="0 0 0" />
     <axis   xyz="0 0 -1" />
+    <mimic joint="rear_left_wheel_joint" multiplier="1.0" offset="0.0"/>
   </joint>
 
 </robot>
